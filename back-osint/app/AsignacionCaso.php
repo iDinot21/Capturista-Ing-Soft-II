@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AsignacionCaso extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'asignaciones_casos';
     protected $primaryKey = 'id_asignacion';
     public $timestamps = false;
@@ -15,6 +18,8 @@ class AsignacionCaso extends Model
     protected $casts = [
         'fecha_asignacion' => 'datetime',
     ];
+    
+    protected $dates = ['deleted_at'];
     
     public function usuario()
     {

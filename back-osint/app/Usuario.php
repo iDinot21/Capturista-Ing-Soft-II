@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Usuario extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
     public $timestamps = false;
@@ -25,6 +28,8 @@ class Usuario extends Model
         'fecha_actualizacion' => 'datetime',
         'ultima_conexion' => 'datetime',
     ];
+    
+    protected $dates = ['deleted_at'];
     
     public function casosCreados()
     {

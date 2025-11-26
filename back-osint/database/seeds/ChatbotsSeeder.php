@@ -14,75 +14,60 @@ class ChatbotsSeeder extends Seeder
         // Chatbot Telegram
         DB::table('chatbot_telegram')->insert([
             [
+                'telegram_user_id' => 123456789,
                 'user_id' => 1,
-                'telegram_user_id' => '123456789',
-                'username' => 'admin_osint',
-                'first_name' => 'Admin',
-                'last_name' => 'OSINT',
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now()
+                'linked_at' => now()
             ],
             [
+                'telegram_user_id' => 987654321,
                 'user_id' => 2,
-                'telegram_user_id' => '987654321',
-                'username' => 'juan_investigador',
-                'first_name' => 'Juan',
-                'last_name' => 'Pérez',
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now()
+                'linked_at' => now()->subDays(5)
+            ],
+            [
+                'telegram_user_id' => 555666777,
+                'user_id' => 3,
+                'linked_at' => now()->subDays(10)
             ]
         ]);
 
         // Chatbot Alexa
         DB::table('chatbot_alexa')->insert([
             [
-                'user_id' => 1,
                 'alexa_user_id' => 'amzn1.ask.account.ADMIN123',
-                'device_id' => 'amzn1.ask.device.ECHO001',
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now()
+                'user_id' => 1,
+                'linked_at' => now(),
+                'preferences' => json_encode(['language' => 'es-ES', 'notifications' => true])
             ],
             [
-                'user_id' => 3,
                 'alexa_user_id' => 'amzn1.ask.account.MARIA456',
-                'device_id' => 'amzn1.ask.device.ECHO002',
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now()
+                'user_id' => 3,
+                'linked_at' => now()->subDays(3),
+                'preferences' => json_encode(['language' => 'es-MX', 'notifications' => false])
+            ],
+            [
+                'alexa_user_id' => 'amzn1.ask.account.CARLOS789',
+                'user_id' => 4,
+                'linked_at' => now()->subDays(7),
+                'preferences' => null
             ]
         ]);
 
         // Chatbot WhatsApp
         DB::table('chatbot_whatsapp')->insert([
             [
-                'user_id' => 1,
-                'phone_number' => '+1234567890',
                 'whatsapp_id' => 'wa_admin_001',
-                'is_verified' => true,
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now()
+                'user_id' => 1,
+                'linked_at' => now()
             ],
             [
-                'user_id' => 4,
-                'phone_number' => '+0987654321',
                 'whatsapp_id' => 'wa_carlos_002',
-                'is_verified' => true,
-                'is_active' => true,
-                'created_at' => now(),
-                'updated_at' => now()
+                'user_id' => 4,
+                'linked_at' => now()->subDays(2)
             ],
             [
-                'user_id' => 5,
-                'phone_number' => '+1122334455',
                 'whatsapp_id' => 'wa_ana_003',
-                'is_verified' => false,
-                'is_active' => false,
-                'created_at' => now()->subDays(15),
-                'updated_at' => now()->subDays(15)
+                'user_id' => 5,
+                'linked_at' => now()->subDays(15)
             ]
         ]);
     }

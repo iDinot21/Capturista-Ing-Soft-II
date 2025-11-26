@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Caso extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'casos';
     protected $primaryKey = 'id_caso';
     public $timestamps = false;
@@ -21,6 +24,8 @@ class Caso extends Model
         'fecha_creacion' => 'datetime',
         'fecha_actualizacion' => 'datetime',
     ];
+    
+    protected $dates = ['deleted_at'];
     
     public function creador()
     {
