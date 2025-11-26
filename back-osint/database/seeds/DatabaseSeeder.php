@@ -11,6 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        // Ejecutar seeders en orden correcto (respetando dependencias)
+        $this->call([
+            UsuariosSeeder::class,
+            CategoriasHerramientasSeeder::class,
+            HerramientasSeeder::class,
+            CasosSeeder::class,
+            ChatbotsSeeder::class,
+        ]);
+        
+        $this->command->info('¡Todos los seeders ejecutados correctamente!');
     }
 }
